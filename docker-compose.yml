@@ -15,7 +15,7 @@ services:
       - 4001:4001
   frontend:
     container_name: vue-demo-app
-    image: sesp13/vue-demo-app
+    image: sesp13/vue-demo-app:v2
     build: ./spa
     restart: unless-stopped
     ports:
