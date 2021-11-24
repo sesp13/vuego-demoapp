@@ -1,0 +1,22 @@
+version: '3.7'
+networks:
+  demo-apps:
+    driver: bridge
+services:
+  backend:
+    image: sesp13/go-server:v2
+    container_name: go-backend
+    build: ./server
+    restart: unless-stopped
+    environment:
+      - IPSTACK_API_KEY=${IPSTACK_API_KEY}
+      - WEATHER_API_KEY=${WEATHER_API_KEY}
+    ports:
+      - 4001:4001
+  frontend:
+    container_name: vue-demo-app
+    image: sesp13/vue-demo-app
+    build: ./spa
+    restart: unless-stopped
+    ports:
+      - 5000:80
